@@ -124,7 +124,7 @@ def main():
                     
                     # Close and break the loop after pressing "x" key
                 else:
-                        break
+                    break
 
                 # close the already opened camera
                 web_cam.release()
