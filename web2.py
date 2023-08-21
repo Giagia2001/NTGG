@@ -106,23 +106,24 @@ def main():
 
             elif choice_way == "Sử dụng webcam":
                 frame_skip = 100
-                st.write("Để dừng mở webcam vui lòng nhấn x trên bàn phím")
-                web_cam = cv2.VideoCapture(0)
-                vid_cod = cv2.VideoWriter_fourcc(*'mp4v')
-                output = cv2.VideoWriter("cam_video.mp4", vid_cod, 20.0, (640, 480))
+                recipe_button = st.button('Dừng mở webcam')
+                if not recipe_button:
+                    web_cam = cv2.VideoCapture(0)
+                    stframe=st.empty()
+                    vid_cod = cv2.VideoWriter_fourcc(*'mp4v')
+                    output = cv2.VideoWriter("cam_video.mp4", vid_cod, 20.0, (640, 480))
 
-                while True:
-                    # Capture each frame of webcam video
-                    ret, frame = web_cam.read()
-                    if not ret:
-                        print("Failed to read frame from webcam.")
-                        break
-                    
-                    cv2.imshow("Webcam", frame)
-                    output.write(frame)
+                    while True:
+                        # Capture each frame of webcam video
+                        ret, frame = web_cam.read()
+                        if not ret:
+                            print("Failed to read frame from webcam.")
+                            break
+                        stframe.image(frame, channels="BGR")
+                        output.write(frame)
                     
                     # Close and break the loop after pressing "x" key
-                    if cv2.waitKey(1) & 0xFF == ord('x'):
+                else:
                         break
 
                 # close the already opened camera
