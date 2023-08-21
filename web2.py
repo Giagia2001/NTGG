@@ -108,7 +108,7 @@ def main():
                 frame_skip = 100
                 st.write("Để dừng mở webcam vui lòng nhấn x trên bàn phím")
                 web_cam = cv2.VideoCapture(0)
-                vid_cod = cv2.VideoWriter_fourcc(*'XVID')
+                vid_cod = cv2.VideoWriter_fourcc(*'mp4v')
                 output = cv2.VideoWriter("cam_video.mp4", vid_cod, 20.0, (640, 480))
 
                 while True:
