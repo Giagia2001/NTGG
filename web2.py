@@ -108,7 +108,7 @@ def main():
                 frame_skip = 100
                 recipe_button = st.button('Dừng mở webcam')
                 
-                if recipe_button:
+                if not recipe_button:
                     web_cam = cv2.VideoCapture(0)
                     stframe = st.empty()
                     vid_cod = cv2.VideoWriter_fourcc(*'mp4v')
