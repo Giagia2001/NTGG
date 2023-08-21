@@ -106,8 +106,8 @@ def main():
 
             elif choice_way == "Sử dụng webcam":
                 frame_skip = 100
-                recipe_button = st.button('Dừng mở webcam')
-                if not recipe_button:
+                stop = st.button('Dừng mở webcam')
+                if not stop:
                     web_cam = cv2.VideoCapture(0)
                     stframe=st.empty()
                     vid_cod = cv2.VideoWriter_fourcc(*'mp4v')
