@@ -105,35 +105,34 @@ def main():
      
 
             elif choice_way == "Sử dụng webcam":
-                frame_skip = 100
-                recipe_button = st.button('Dừng mở webcam')
                 
-                if not recipe_button:
+                start_button = st.button("Bắt đầu mở webcam")
+                frame_skip = 100
+                stframe=st.empty()
+                if start_button:
                     web_cam = cv2.VideoCapture(0)
-                    stframe = st.empty()
                     vid_cod = cv2.VideoWriter_fourcc(*'mp4v')
                     output = cv2.VideoWriter("cam_video.mp4", vid_cod, 20.0, (640, 480))
+                    stop_button = st.button("Dừng webcam")
+
                     
                     while True:
-                        # Capture each frame of webcam video
                         ret, frame = web_cam.read()
                         if not ret:
-                            print("Failed to read frame from webcam.")
+                            st.warning("Failed to read frame from webcam.")
                             break
+                        
                         stframe.image(frame, channels="BGR")
                         output.write(frame)
                         
-                        # Check if the button was pressed again to stop the loop
-                        if st.button('Dừng mở webcam'):
+                        if stop_button:
                             break
                     
-                    # Close and release resources
                     web_cam.release()
                     output.release()
                     cv2.destroyAllWindows()
-                    
-                    vid = 'cam_video.mp4'
 
+                vid='cam_video.mp4'
 
 
 
@@ -237,7 +236,7 @@ def main():
                         if not des:
                             st.info("Không có dữ liệu để mô tả!")
 
-                elif file_vid or web_cam:
+                elif vid:
                     vid_cap = cv2.VideoCapture(vid)
                     cur_frame = 0
                     success = True
